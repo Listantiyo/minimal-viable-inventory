@@ -1,13 +1,5 @@
 # minimal-viable-inventory
 
-Sesuai permintaan, saya akan berperan sebagai **Engineering Manager**. Saya tidak akan mendikte sintaks `if-else` atau `struct` kamu, karena itu tugas kamu sebagai developer untuk riset dan eksekusi.
-
-Saya akan memberikan **Blueprint Fase 1: The Core Engine**. POS itu intinya adalah pencatatan yang akurat. Kita tidak butuh database atau web dulu. Kita butuh "Mesin" yang solid di level **Domain**.
-
-Berikut adalah instruksi pengerjaan untuk kamu:
-
----
-
 ## Blueprint Fase 1: Minimal Viable Inventory (MVI)
 
 ### 1. Business Requirements (Kebutuhan Bisnis)
