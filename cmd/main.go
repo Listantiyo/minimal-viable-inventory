@@ -1,8 +1,13 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 	// "syscall"
 	// "errors"
 )
@@ -20,8 +25,20 @@ func main() {
 		serverError <- server.ListenAndServe()
 	}()
 
-	err := <-serverError
-	if err != nil {
-		fmt.Printf("Server error: %v\n", err)
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+
+	select {
+	case sig := <-quit:
+		if sig == syscall.SIGINT {
+			fmt.Print("Shutdown...")
+		}
+	case err := <-serverError:
+		panic(err)
 	}
+
+	ctx, close := context.WithTimeout(context.Background(), time.Second * 30)
+	defer close()
+
+	server.Shutdown(ctx)
 }
